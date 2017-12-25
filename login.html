@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			text-decoration: none;
+		}
+		h3{
+			margin-top: 50px;
+			text-align:center;
+			letter-spacing: 5px;
+		}
+		.box{
+			border-radius: 8px;
+			background: #8271b9;
+			width: 600px;
+			height: 400px;
+			margin: 150px auto;
+			border: 1px solid blue;
+		}
+		.box_ul{
+
+		}
+		.box_ul li{
+			width: 500px;
+			padding:0 50px;
+			position: relative;
+			margin-top: 20px;
+		}
+		.inp{
+			box-shadow: none;
+			border-radius: 5px;
+			position: absolute;
+			right: 150px;
+			width: 150px;
+			height: 30px;
+		}
+		.last_li{
+			margin-top: 60px !important;
+			text-align: center;
+		}
+		.last_li input:first-child{
+			margin-left:-20px;
+			box-shadow: none;
+			border-radius: 3px;
+			padding:3px 5px;
+		}
+		.last_li input:last-child{
+			margin-left:40px;
+			box-shadow: none;
+			border-radius: 3px;
+			padding:3px 5px;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<h3>管理员重设密码</h3>
+		<ul class="box_ul">
+			<form type="submit">
+				<li><span>账号名：</span><input id="username" class="inp" type="text"></li>
+				<li><span>新密码：</span><input id="pas1" class="inp" type="password"></li>
+				<li><span>再次输入新密码：</span><input id="pas2" class="inp" type="password"></li>
+				<li class="last_li"><input id="btn" type="button" value="重新设置密码"><input type="reset"></li>
+			</form>
+			
+		</ul>
+	</div>
+	<script>
+		var oBtn = document.querySelector('#btn');
+		oBtn.onclick = function(){
+			var oUsername = document.querySelector('#username');
+			var oPas1 = document.querySelector('#pas1');
+			var oPas2 = document.querySelector('#pas2');
+			var userVal = oUsername.value;
+			if (userVal=='') {
+				alert('账号名不能为空！');
+			}
+			else if(oPas1.value==''){
+				alert('密码不能为空！');
+			}
+			else if(oPas1.value.length<6&&oPas2.value.length<6){
+				alert('密码长度最少6位！');
+			}
+			else if(oPas1.value!=oPas2.value){
+				alert('两次密码输入不一致，请重新输入！');
+			}
+			else if(oPas1.value==oPas2.value&&oPas1.value.length>=6&&oPas2.value.length>=6){
+				alert('密码设置成功！');
+			}
+			
+		}
+		
+	</script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title>animation</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			text-decoration: none;
+		}
+		.container{
+			margin: 0 auto;
+			overflow: hidden;
+			width: 900px;
+			height: 500px; 
+		}
+		.div_img{
+			margin:100px auto;
+			border-radius: 9px;
+			background:url("img/3.jpg") center no-repeat;
+			background-size: cover;
+			width: 600px;
+			filter: blur(1px);
+			/*调用smaller动画*/
+			animation: smaller 3s;
+			/*动画暂停*/
+			animation-fill-mode: forwards;
+		}
+	 @keyframes smaller
+        {
+            from{
+				width: 600px;
+				height:400px;
+            }
+            to{
+				width: 900px;
+				height:800px;
+            }
+        }
+	</style>
+</head>
+<body>
+	<div>
+		<div class="container">
+			<div class="div_img" style="height: 100px;">
+				
+			</div>
+		</div>
+	</div>
+	
+	<script>
+		var a = document.querySelector('.div_img');
+		a.onmousemove = ()=>{
+			// 鼠标移入动画停止
+			a.style.animationPlayState="paused";
+			
+		}
+		a.onmouseout = ()=>{
+			// 鼠标移除动画开始
+			a.style.animationPlayState = "running";
+		}
+
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

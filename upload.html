@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		form{
+			position: relative;
+			left: 50px;
+			top: 54px;
+		}
+		#label{
+			position: relative;
+		}
+		#ajaxFrame{
+			margin-top: 100px;
+			width: 0;
+			height: 0;
+		}
+		#div_img{
+			width: 300px;
+			height: 300px;
+
+		}
+		.imgs{
+			width: 300px;
+			height: 300px;
+		}
+	</style>
+</head>
+<body>
+ 	<iframe name="ajaxFrame" id="ajaxFrame"></iframe>
+ 	<div id="div_img">
+ 		
+ 	</div>
+	<form type="submit" id="form" name="form" method="post" enctype="multipart/form-data" target="ajaxFrame">
+         <label for="file" id="label" type="submit">点击上传图片</label>
+         <input type="file" id="file" name="head_ico" accept="image/*">
+ 	</form>
+<script src="js/jquery-3.2.1.min.js"></script>
+	<script>
+		//上传图片
+		// $('#form').attr('action','');
+		$("#file").on("change", function (e) {
+           		if (!window.FileReader) alert("no");
+            	var files = e.target.files;
+            	for (var i = 0, f; f = files[i]; i++) {
+                		if (!f.type.match('image.*')) {
+                    		continue;
+               			}
+                		var reader = new FileReader();
+                		reader.onload = (function (theFile) {
+               				 return function (e) {
+                        		// img 元素
+                        			$("#img").attr("src", e.target.result);
+                        			var oImg = new Image(); 
+			                        oImg.src = e.target.result;
+			                        var oDiv_img = document.getElementById('div_img');
+									oImg.className='imgs';
+									oDiv_img.append(oImg);
+									console.log(e.target.result);
+                    			};//return
+                		})(f);
+               		 reader.readAsDataURL(f);
+            	}
+             	$("#form").submit();
+             	
+
+        	});
+	</script>
+</body>
+</html>

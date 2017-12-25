@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0"/>
+	<title>评价显示星级</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		li,a,ul,ol{
+			text-decoration: none;
+			list-style: none;
+		}
+		#containner{
+			width: 50%;
+			margin: 100px auto;
+
+		}
+		.starNum{
+			box-shadow: none;
+			border-radius: 4px;
+			height: 40px;
+			width:150px;
+			font-size:26px;
+			color: #f00;
+			text-align: center;
+		}
+		.btn{
+			width: 40px;
+			height: 40px;
+			background:#aee;
+			box-shadow: none;
+		}
+		.star_div{
+			margin-top: 50px;
+		}
+		.blackstar{
+			width: 28px;
+			height: 28px;
+			margin-left: 5px;
+		}
+		.redstar{
+			width: 28px;
+			height: 28px;
+			margin-left: 5px;
+		}
+		.rdiv{
+			position: relative;
+			margin-top: -33px;
+		}
+	</style>
+</head>
+<body>
+	<div id="containner">
+		<input class="starNum" type="number">
+		<button class="btn">click</button>
+		<div class="star_div"></div>
+	</div>
+	<script>
+		var oContainner = document.getElementById('containner');
+		var oBtn = document.getElementsByClassName('btn')[0];
+		var oStar_div = document.getElementsByClassName('star_div')[0];
+		var dclick = false;
+		// 点击事件
+		oBtn.onclick = function(){
+			var oStarNum = document.getElementsByClassName('starNum')[0];
+			var starVal = oStarNum.value;
+			if (dclick==false) {
+				if (starVal == ''){
+					alert('请输入数字');
+				}
+				else if (starVal > 5) {
+					alert('请输入小于5的数字！');
+				}
+				else if (starVal <= 0) {
+					alert('请输入大于0的数字！');
+				}
+				else if(starVal > 0 && starVal <=5){
+					oStarNum.value = '';
+					dclick = true;
+					var div1 = document.createElement('div');
+					var div2  = document.createElement('div');
+					div1.className='bdiv';
+					div2.className = 'rdiv';
+					oStar_div.appendChild(div1);
+					oStar_div.appendChild(div2);
+					for(var i = 0;i <5;i++){
+						var oblackImg = document.createElement('img');
+						oblackImg.className= "blackstar";
+						div1.appendChild(oblackImg);
+						oblackImg.src = 'img/black.png';
+					}
+					for(var j = 0;j<starVal;j++){
+						var oredImg = document.createElement('img');
+						oredImg.className = 'redstar';
+						div2.appendChild(oredImg);
+						oredImg.src = 'img/red.png';
+					}
+				}	
+		    }
+		    else{
+		    	window.location.reload();
+		    }
+			
+		}
+		
+	</script>
+</body>
+</html>

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>登录注册</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+			user-select: none;
+			list-style: none;
+			text-decoration: none;
+		}
+		#containner{
+			border: 1px solid #000;
+			border-radius:5px;
+			width: 500px;
+			margin: 100px auto;
+			padding: 50px;
+		}
+		#tab{
+			justify-content: center;
+			display: flex;
+
+		}
+		.sp{
+			color: #333;
+			font-size: 18px;
+			text-align: center;
+			border: none;
+			box-shadow: none;
+			width: 240px;
+			cursor: pointer;
+			padding:5px 0 5px 0;
+			line-height: 25px;
+		}
+		.sp:hover{
+			background:rgba(241,241,243,1);
+			border-radius: 3px;
+			box-shadow: 10px 10px 5px #12e2ff;
+		}
+		.sign{
+			border-right: 1px solid #0c0202;
+			border-bottom: 1px solid #0c0202;
+			border-radius: 0 0 3px 0;
+		}
+		.regist{
+			margin-left: 3px;
+			color: #12e2ff;
+		}
+		#reg li:first-child{
+			margin-top: 35px;
+		}
+		#reg li{
+			margin-top:25px;
+		}
+		#reg li img{
+			width: 30px;
+			height: 30px;
+			vertical-align: middle;
+			margin-left: 5px;
+			margin-right: 5px;
+		}
+		#reg li span{
+		}
+		#reg li span img{
+			width: 20px;
+			height: 20px;
+			position: absolute;
+			display: none;
+			left: 930px;
+			margin-top:-27px;
+		}
+		.inp{
+			padding-left: 15px;
+			box-shadow: none;
+			background: #f5f5f5;
+			border: none;
+			border-radius: 3px;
+			height: 30px;
+			width: 280px;
+		}
+		.len{
+			width: 405px;
+		}
+		.code{
+			height: 30px;
+			width: 120px;
+			background:#12e2ff;
+			border: none;
+			box-shadow: none;
+			color: #fff;
+			font-size: 13px;
+			cursor: pointer;
+		}
+		.btn{
+			height: 30px;
+			width: 96%;
+			margin: 0 auto;
+			text-align: center;
+			margin: 0 auto;
+			border: none;
+			box-shadow: none;
+			background: #12e2ff;
+			border-radius: 3px;
+			color: #fff;
+			font-size: 13px;
+			cursor: pointer;
+			justify-content: center;
+			display: flex;
+		}
+		.old{
+			color: #12e2ff;
+			font-size:10px;
+			cursor: pointer;
+			margin-left: 10px;
+		}
+		.old:hover{
+			border-bottom: 1px solid black;
+		}
+		#logo{
+			display: none;
+			height: 300px;
+		}
+		#logo li{
+			margin-top:35px;
+		}
+		#logo li img{
+			width: 30px;
+			height: 30px;
+			vertical-align: middle;
+			margin-left: 5px;
+			margin-right: 5px;
+		}
+		.wei:hover{
+			box-shadow:1px 1px 1px black;
+		}
+	</style>
+</head>
+<body>
+	<div id="containner">
+		<div id="tab">
+			<span class="sp sign">登录</span>
+			<span class="sp regist">注册</span>
+		</div>
+		<div id="reg">
+			<li>
+				<img src="img/phone.png" alt=""><input id="regphone" class="inp len" type="number" placeholder="请输入手机号" >
+				<span>
+					<img id="d1" class="yesphone" src="img/yes.png" alt="">
+					<img id="c1" class="nophone" src="img/no.png" alt="">
+				</span>
+			</li>
+			<li>
+				<img src="img/password.png" alt=""><input id="regpass1" class="inp len" type="password" placeholder="请输入密码">
+				<span>
+					<img id="d2" class="yesphone" src="img/yes.png" alt="">
+					<img id="c2" class="nophone" src="img/no.png" alt="">
+				</span>
+			</li>
+			<li>
+				<img src="img/password.png" alt=""><input id="regpass2" class="inp len" type="password" placeholder="请再次输入密码">
+				<span>
+					<img id="d3" class="yesphone" src="img/yes.png" alt="">
+					<img id="c3" class="nophone" src="img/no.png" alt="">
+				</span>
+			</li>
+			<li>
+				<img src="img/code.png" alt=""><input id="regcode" class="inp" type="number" placeholder="请输入验证码">
+				<button class="code wei" id="regGetcode" disabled="disabled" >获取验证码</button>
+			</li>
+			<li>
+				<button class="btn wei" id="regreg" disabled="disabled">注册</button>
+			</li>
+			<li>
+				<span class="old have">已有账号&nbsp;&nbsp;立即登录</span>
+			</li>
+		</div>
+		<div id="logo">
+			<li>
+				<img src="img/phone.png" alt=""><input class="inp len" type="number" placeholder="请输入手机号">
+			</li>
+			<li>
+				<img src="img/password.png" alt=""><input class="inp len" type="password" placeholder="请输入密码">
+			</li>
+			<li>
+				<img src="img/code.png" alt=""><input class="inp" type="number" placeholder="请输入验证码">
+				<button class="code wei">获取验证码</button>
+			</li>
+			<li>
+				<button class="btn wei">登录</button>
+			</li>
+			<li>
+				<span class="old unhave">没有账号&nbsp;&nbsp;立即注册</span>
+			</li>
+		</div>
+	</div>
+	<script>
+		var oSign = document.getElementsByClassName('sign')[0];
+		var oRegist = document.getElementsByClassName('regist')[0];
+		var oReg = document.getElementById('reg');
+		var oLogo = document.getElementById('logo');
+		var oHave = document.getElementsByClassName('have')[0];
+		var oUhave = document.getElementsByClassName('unhave')[0];
+		var reg = /^[1][3,4,5,7,8][0-9]{9}$/; 
+		var oRgphone = document.getElementById('regphone');
+		var oRegreg  = document.getElementById('regreg');
+		var oRegps1 = document.getElementById('regpass1');
+		var oRegps2 = document.getElementById('regpass2');
+		var oRegcode = document.getElementById('regcode');
+		var oD1 = document.getElementById('d1');
+		var oC1 = document.getElementById('c1');
+		var oD2 = document.getElementById('d2');
+		var oC2 = document.getElementById('c2');
+		var oD3 = document.getElementById('d3');
+		var oC3 = document.getElementById('c3');
+		var oRegGetCode = document.getElementById('regGetcode');
+    	var phoneCode ='';
+		
+		// 判断phone_number格式
+		oRgphone.onkeyup = function(){
+			var regPhoneVal = oRgphone.value;
+			if (reg.test(regPhoneVal)==true){
+				oD1.style.display = 'block';
+				oC1.style.display = 'none';
+			}
+			else{
+				oC1.style.display = 'block';
+				oD1.style.display = 'none';
+			}
+		}
+		//判断第一次密码
+		oRegps1.onkeyup = function(){
+			var regPhoneVal = oRgphone.value;
+			var regPs1Val = oRegps1.value;
+			if (reg.test(regPhoneVal)==true&&regPs1Val!='') {
+				oD2.style.display = 'block';
+				oC2.style.display = 'none';
+			}
+			else{
+				oC2.style.display = 'block';
+				oD2.style.display = 'none';
+			}
+		}
+		// 判断第二次密码
+		oRegps2.onkeyup = function(){
+			var regPs1Val = oRegps1.value;
+			var regPs2Val  = oRegps2.value;
+			var regPhoneVal = oRgphone.value;
+			if (reg.test(regPhoneVal)==true&&regPs1Val==regPs2Val&&regPs1Val!='') {
+				oD3.style.display = 'block';
+				oC3.style.display = 'none';
+				// 移除disabled属性
+				oRegGetCode.removeAttribute('disabled');
+			}
+			else{
+				oC3.style.display = 'block';
+				oD3.style.display = 'none';
+			}
+		}
+		// 点击获取验证码
+        oRegGetCode.onclick = function(){
+        	var regPs1Val = oRegps1.value;
+			var regPs2Val  = oRegps2.value;
+			var regPhoneVal = oRgphone.value;
+			var time = 15;
+        	oRegGetCode.setAttribute('disabled','disabled');
+        	if (reg.test(regPhoneVal)==true&&regPs1Val==regPs2Val&&regPs1Val!='') {
+        		// 设定倒计时
+        		var timer =	setInterval(function(){
+        			time --;
+        			oRegGetCode.innerHTML = time+'s'+'&nbsp;后重新发送';
+        			if (time==0) {
+        				time = 15;
+        				oRegGetCode.innerHTML = '获取验证码';
+        			    oRegGetCode.removeAttribute('disabled');
+        			    clearInterval(timer);
+        			    for (var i = 0; i < 5; i++) {
+        			    	var Rand =Math.floor(Math.random()*10);
+        			    	phoneCode += Rand;
+        			    }
+        			    alert(phoneCode);
+        			    oRegreg.removeAttribute('disabled');
+        			}
+        		},1000)
+        	}
+        }
+        //点击注册
+		oRegreg.onclick = function(){
+			var regPhoneVal = oRgphone.value;
+			var regPs1Val = oRegps1.value;
+			var regPs2Val  = oRegps2.value;
+			var oRegcodeVal = oRegcode.value;
+			if (reg.test(regPhoneVal)==true&&regPs1Val==regPs2Val&&regPs1Val!=''&&oRegcodeVal==phoneCode) {
+					alert('注册成功')
+			}
+			else if (reg.test(regPhoneVal)==true&&regPs1Val==regPs2Val&&regPs1Val!=''&&oRegcodeVal!=phoneCode) {
+					alert('验证码输入错误');
+			}
+		}
+
+		// 点击切换登录和注册
+		oSign.onclick = function(){
+			changeLogin();
+		}
+		oRegist.onclick = function(){
+			changeReg();
+		}
+		//点击下方有没有注册
+		oHave.onclick = function(){
+			changeLogin();
+		}
+		oUhave.onclick = function(){
+			changeReg();
+		}
+		//切换注册
+		function changeReg(){
+			oReg.style.display = 'block';
+			oRegist.style.color = '#12e2ff';
+			oRegist.style.border = 'none';
+			oSign.style.borderBottom = '1px solid #0c0202';
+			oSign.style.borderRight = '1px solid #0c0202';
+			oSign.style.color = '#333';
+			oLogo.style.display = 'none';
+		}
+		//切换登录
+	    function changeLogin(){
+			oReg.style.display = 'none';
+			oSign.style.border = 'none';
+			oSign.style.color = '#12e2ff';
+			oRegist.style.borderBottom = '1px solid #0c0202';
+			oRegist.style.borderLeft = '1px solid #0c0202';
+			oRegist.style.borderRadius = '0 0 0 3px';
+			oRegist.style.color = '#333';
+			oLogo.style.display = 'block';
+		}
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
